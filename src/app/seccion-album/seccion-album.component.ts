@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-seccion-album',
+  selector: 'seccion-album',
   templateUrl: './seccion-album.component.html',
   styleUrls: ['./seccion-album.component.css']
 })
