@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./album.component.css']
 })
 export class AlbumComponent {
-
+  public titleMovies: string = "Películas";
+  public titlePlayers: string = "Personajes";
+  public titleShips: string = "Naves";
 }
