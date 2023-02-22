@@ -4,3 +4,8 @@ header {
   margin: auto;
   margin-top: 10px;
 }
+
+main {
+  width: 90%;
+  margin: auto;
+}
