@@ -14,9 +14,7 @@ img {
   display: inline-block;
 }
 
-h1 {
-  display: inline-block;
-  margin-left: 13px;
+h1, h3 {
   text-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
@@ -24,4 +22,9 @@ h1 {
   margin: auto;
   width: auto;
   height: auto;
+}
+
+#title-container {
+  display: inline-block;
+  margin-left: 13px;
 }
