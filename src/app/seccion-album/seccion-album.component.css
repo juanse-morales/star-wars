@@ -1,7 +1,7 @@
 #seccion-album-container {
   display: inline-block;
   width: 32%;
-  height: 90%;
+  height: 100%;
   margin: 5px;
   border: 2pt solid rgb(219, 217, 217);
   border-radius: 10px;
@@ -12,7 +12,7 @@
 .title-seccion {
   font-size: 16pt;
   font-weight: bold;
-  color: #79cad8;
+  color: #008C72;
   text-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 2px 2px;
   text-align: center;
   
