@@ -1,0 +1,15 @@
+.button {
+  height: 18px;
+  width: 150px;
+  background: rgba(83, 179, 243, 0.849);
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+  text-decoration: none;
+  color: white;
+  margin: 5px;
+}
+
+#buttons-container {
+  display: inline-block;
+}
