@@ -1,4 +1,4 @@
-#album-container {
+#album-main-container {
   height: 700px;
   margin: auto;
   background-color: white;
@@ -9,13 +9,21 @@
   border-radius: 25px;
 }
 
-#buttons-component-container {
-  display: block;
+#header-album-container {
   width: 100%;
   height: 7%;
 }
 
+#title-album-container {
+  display: inline-block;
+  color: #008C72;
+}
+
+#buttons-component-container {
+  float: right;
+}
+
 #seccion-album-component-container {
   display: block;
-  height: 100%;
+  height: 90%;
 }
