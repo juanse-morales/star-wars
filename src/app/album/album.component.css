@@ -1,9 +1,12 @@
 #main-container {
   width: 90%;
-  height: auto;
+  height: 700px;
   margin: auto;
   background-color: white;
   margin-top: 70px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 50px;
+  margin-bottom: 30px;
+  padding-top: 10px;
+  padding-left: 12px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  border-radius: 25px;
 }
