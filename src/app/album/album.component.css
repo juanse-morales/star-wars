@@ -1,0 +1,9 @@
+#main-container {
+  width: 90%;
+  height: auto;
+  margin: auto;
+  background-color: white;
+  margin-top: 70px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 50px;
+}
