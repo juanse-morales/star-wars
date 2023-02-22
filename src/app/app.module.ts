@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { LogoComponent } from './logo/logo.component';
 import { AlbumComponent } from './album/album.component';
 import { ButtonsComponent } from './buttons/buttons.component';
+import { SeccionAlbumComponent } from './seccion-album/seccion-album.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LogoComponent,
     AlbumComponent,
-    ButtonsComponent
+    ButtonsComponent,
+    SeccionAlbumComponent
   ],
   imports: [
     BrowserModule,
