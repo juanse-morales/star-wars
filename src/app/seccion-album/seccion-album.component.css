@@ -21,3 +21,27 @@
   border-radius: 10px;
   background: #087896;
 }
+
+@media (min-width: 300px) {
+  .title-seccion {
+    font-size: 10pt;
+    font-weight: normal;
+  }
+
+  #seccion-album-container {
+    width: 31%;
+    margin: 3px;
+  }
+}
+
+@media (min-width: 880px) {
+  .title-seccion {
+    font-size: 14pt;
+    font-weight: bold;
+  }
+
+  #seccion-album-container {
+    width: 31%;
+    margin: 5px;
+  }
+}

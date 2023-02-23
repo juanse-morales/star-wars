@@ -34,3 +34,23 @@ main {
 #buttons-main-container {
   float: right;
 }
+
+@media (min-width: 300px) {
+  #header-main-container {
+    height: 5%;
+  }
+
+  #title-main-container {
+    font-size: 8pt;
+  }
+}
+
+@media (min-width: 880px) {
+  #header-main-container {
+    height: 7%;
+  }
+
+  #title-main-container {
+    font-size: 14pt;
+  }
+}

@@ -9,3 +9,17 @@
   margin-left: 7px;
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
+@media (min-width: 300px) {
+  .button {
+    font-size: 8pt;
+
+  }
+}
+
+@media (min-width: 880px) {
+  .button {
+    font-size: 12pt;
+
+  }
+}
