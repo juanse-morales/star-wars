@@ -29,4 +29,5 @@ header {
 
 #content-main {
   margin: 10px;
+  min-height: 350px;
 }
