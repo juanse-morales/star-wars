@@ -6,5 +6,6 @@
 }
 
 html {
-  background-image: url('./assets/background.webp');
+  /* background-image: url('./assets/background.webp'); */
+  background: #f5f6f7;
 }
