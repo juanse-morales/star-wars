@@ -2,17 +2,16 @@
   background: #142b47;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 97%;
-  height: 40%;
-  margin: auto;
-  /* display: flex;
-  flex-wrap: wrap; */
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   padding: 0 15px;
 }
 
 .envelope {
+  display: flex;
+  justify-content: center;
   width: 25%;
   min-width: 150px;
 }
@@ -26,4 +25,16 @@ img:hover {
   -webkit-filter: drop-shadow(5px 5px 15px rgba(208, 208, 208, 0.35));
   filter: drop-shadow(5px 5px 15px rgba(208, 208, 208, 0.35));
   cursor: pointer;
+}
+
+#content-envelope {
+  min-height: 180px;
+  margin-top: 7px;
+}
+
+#plates-container {
+  min-height: 170px;
+  border-radius: 10px;
+  background: #08182b;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px -1px 60px -78px inset, rgba(0, 0, 0, 0.3) 0px 3px 36px -3px inset;
 }
