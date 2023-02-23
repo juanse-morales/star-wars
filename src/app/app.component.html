@@ -9,7 +9,7 @@
         <h2>{{title_main_container}}</h2>
       </div>
       <div id="buttons-main-container">
-        <buttons></buttons>
+        <buttons (title_main)="onReceiveTitle($event)"></buttons>
       </div>
     </div>
     <router-outlet></router-outlet>
