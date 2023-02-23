@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./envelope.component.css']
 })
 export class EnvelopeComponent {
-
+  public envelopes = new Array(4);
 }
