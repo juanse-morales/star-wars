@@ -7,6 +7,7 @@ import { LogoComponent } from './logo/logo.component';
 import { AlbumComponent } from './album/album.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { SeccionAlbumComponent } from './seccion-album/seccion-album.component';
+import { EnvelopeComponent } from './envelope/envelope.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { SeccionAlbumComponent } from './seccion-album/seccion-album.component';
     LogoComponent,
     AlbumComponent,
     ButtonsComponent,
-    SeccionAlbumComponent
+    SeccionAlbumComponent,
+    EnvelopeComponent
   ],
   imports: [
     BrowserModule,
