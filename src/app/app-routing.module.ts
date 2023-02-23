@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AlbumComponent } from './album/album.component';
+import { HomeComponent } from './home/home.component';
 import { EnvelopeComponent } from './envelope/envelope.component';
 
 const routes: Routes = [
   {
-    path: 'album',
-    component: AlbumComponent
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'envelope',
@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'album',
+    redirectTo: 'home',
     pathMatch: 'full'
   }
 ];
