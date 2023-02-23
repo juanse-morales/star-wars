@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'buttons',
@@ -6,5 +6,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./buttons.component.css']
 })
 export class ButtonsComponent {
+  
+  @Output() public title_main: EventEmitter<string> = new EventEmitter();
+
+  public onSendTitle (title: string): void {
+    this.title_main.emit(title);
+  }
 
 }

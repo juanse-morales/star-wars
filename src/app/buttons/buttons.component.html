@@ -1,2 +1,2 @@
-<a href="#" routerLink="/envelope" class="button">Obtener láminas</a>
-<a href="#" routerLink="/album" class="button">Mi álbum</a>
+<a href="#" [routerLink]="['/envelope']" class="button" (click)="onSendTitle('Obtener láminas')">Obtener láminas</a>
+<a href="#" [routerLink]="['/album']" class="button" (click)="onSendTitle('Mi álbum')">Mi álbum</a>
