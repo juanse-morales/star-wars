@@ -2,16 +2,17 @@
   <logo></logo>
 </header>
 
-<main>
-  <div id="album-main-container">
-    <div id="header-main-container">
-      <div id="title-main-container">
-        <h2>{{title_main_container}}</h2>
-      </div>
-      <div id="buttons-main-container">
-        <buttons (title_main)="onReceiveTitle($event)"></buttons>
-      </div>
+
+<div id="main-container">
+  <div id="header-main-container">
+    <div id="title-main-container">
+      <h2>{{title_main_container}}</h2>
     </div>
+    
+    <buttons (title_main)="onReceiveTitle($event)"></buttons>
+    
+  </div>
+  <div id="content-main">
     <router-outlet></router-outlet>
   </div>
-</main>
+</div>

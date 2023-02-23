@@ -6,11 +6,19 @@
   border-radius: 10px;
   text-decoration: none;
   color: white;
-  margin-left: 7px;
+  /* margin: 0 0 7px 5px; */
   box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
 
-@media (min-width: 300px) {
+#buttons-main-container {
+  display: flex;
+}
+
+.button-container {
+  margin: 0 0 0 7px;
+}
+
+/* @media (min-width: 300px) {
   .button {
     font-size: 8pt;
 
@@ -22,4 +30,4 @@
     font-size: 12pt;
 
   }
-}
+} */

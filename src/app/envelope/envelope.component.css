@@ -5,19 +5,21 @@
   width: 97%;
   height: 40%;
   margin: auto;
-  display: inline-block;
-  padding-left: 34px;
+  /* display: flex;
+  flex-wrap: wrap; */
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
 }
 
 .envelope {
   width: 25%;
-  display: inline-block;
-  padding-top: 57px;
+  min-width: 150px;
 }
 
 img {
-  width: 250px;
   height: auto;
+  max-width: 100%;
 }
 
 img:hover {

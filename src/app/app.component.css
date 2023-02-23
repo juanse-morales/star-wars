@@ -1,41 +1,37 @@
 header {
   width: 90%;
   height: auto;
-  margin: auto;
-  margin-top: 10px;
+  margin: 10px auto;
 }
 
-main {
+#main-container {
+  height: auto;
   width: 90%;
   margin: auto;
-}
-
-#album-main-container {
-  height: 700px;
-  margin: auto;
   background-color: #0c1e34;
-  margin-top: 13px;
-  margin-bottom: 30px;
-  padding: 20px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   border-radius: 25px;
+  /* overflow: scroll; */
 }
 
 #header-main-container {
-  width: 100%;
   height: 7%;
+  padding: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 #title-main-container {
-  display: inline-block;
   color: white;
+  flex: 1;
 }
 
-#buttons-main-container {
-  float: right;
+#content-main {
+  margin: 10px;
 }
 
-@media (min-width: 300px) {
+/* @media (min-width: 300px) {
   #header-main-container {
     height: 5%;
   }
@@ -53,4 +49,4 @@ main {
   #title-main-container {
     font-size: 14pt;
   }
-}
+} */
