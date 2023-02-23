@@ -4,14 +4,14 @@
   height: 100%;
   margin: 5px;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 7px;
-  background: linear-gradient(346deg, rgba(198,209,211,1) 0%, rgba(224,231,232,1) 50%, rgba(255,255,255,1) 100%); 
+  background: #08182b;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -78px inset, rgba(0, 0, 0, 0.3) 0px 8px 36px -8px inset;
 }
 
 .title-seccion {
   font-size: 16pt;
   font-weight: bold;
-  color: #008C72;
+  color: white;
   text-align: center;
   
 }
@@ -19,5 +19,5 @@
 #title-seccion-container {
   padding: 10px;
   border-radius: 10px;
-  background: white;
+  background: #087896;
 }
