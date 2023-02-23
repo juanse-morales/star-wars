@@ -8,7 +8,7 @@ import { AlbumComponent } from './album/album.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { SeccionAlbumComponent } from './seccion-album/seccion-album.component';
 import { EnvelopeComponent } from './envelope/envelope.component';
-import { HomeComponent } from './home/home.component';
+
 
 @NgModule({
   declarations: [
@@ -17,8 +17,7 @@ import { HomeComponent } from './home/home.component';
     AlbumComponent,
     ButtonsComponent,
     SeccionAlbumComponent,
-    EnvelopeComponent,
-    HomeComponent
+    EnvelopeComponent
   ],
   imports: [
     BrowserModule,
