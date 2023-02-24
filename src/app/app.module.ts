@@ -8,6 +8,7 @@ import { AlbumComponent } from './album/album.component';
 import { ButtonsComponent } from './buttons/buttons.component';
 import { SeccionAlbumComponent } from './seccion-album/seccion-album.component';
 import { EnvelopeComponent } from './envelope/envelope.component';
+import { PlateComponent } from './plate/plate.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { EnvelopeComponent } from './envelope/envelope.component';
     AlbumComponent,
     ButtonsComponent,
     SeccionAlbumComponent,
-    EnvelopeComponent
+    EnvelopeComponent,
+    PlateComponent
   ],
   imports: [
     BrowserModule,
