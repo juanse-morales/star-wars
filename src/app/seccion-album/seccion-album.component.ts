@@ -7,4 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 export class SeccionAlbumComponent {
   @Input() public title: string = '';
+  @Input() public platesCount: number = 0;
+
 }

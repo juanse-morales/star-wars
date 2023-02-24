@@ -3,7 +3,9 @@
   flex-direction: column;
   min-height: 300px;
   min-width: 300px;
+  max-height: 400px;
   margin: 5px;
+  padding-bottom: 10px;
   border-radius: 10px;
   background: #08182b;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -78px inset, rgba(0, 0, 0, 0.3) 0px 8px 36px -8px inset;
@@ -21,4 +23,10 @@
   padding: 10px;
   border-radius: 10px;
   background: #087896;
+}
+
+#content-seccion {
+  display: flex;
+  justify-content: center;
+  overflow: scroll;
 }
