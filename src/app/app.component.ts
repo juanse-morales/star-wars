@@ -12,7 +12,10 @@ export class AppComponent {
   constructor (
     
   ) {
-    if(location.href.split('/')[3] === 'album'){
+    
+    let path = location.href.split('/')[3];
+
+    if(path === 'album' || path === ''){
       this.title_main_container = 'Mi álbum';
     } else {
       this.title_main_container = "Obtener láminas";
