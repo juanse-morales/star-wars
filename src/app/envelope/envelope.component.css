@@ -37,4 +37,7 @@ img:hover {
   border-radius: 10px;
   background: #08182b;
   box-shadow: rgba(50, 50, 93, 0.25) 0px -1px 60px -78px inset, rgba(0, 0, 0, 0.3) 0px 3px 36px -3px inset;
+  display: flex;
+  padding: 5px;
+  justify-content: center;
 }
