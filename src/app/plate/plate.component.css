@@ -1,6 +1,6 @@
 .plate {
   display: flex;
-  min-height: 80px;
+  min-height: 150px;
   min-width: 280px;
   margin: 8px;
   background: rgba(69, 184, 172, .15);
