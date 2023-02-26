@@ -1,0 +1,10 @@
+.plate-envelope {
+  background: white;
+  min-width: 220px;
+  min-height: 155px;
+  margin: 5px;
+  border-radius: 5px;
+  background: rgba(69, 184, 172, .15);
+  backdrop-filter: blur(5px);
+  border: 2pt solid rgb(112, 161, 163);
+}
