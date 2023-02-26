@@ -9,6 +9,7 @@ import { ButtonsComponent } from './buttons/buttons.component';
 import { SeccionAlbumComponent } from './seccion-album/seccion-album.component';
 import { EnvelopeComponent } from './envelope/envelope.component';
 import { PlateComponent } from './plate/plate.component';
+import { PlateEnvelopeComponent } from './plate-envelope/plate-envelope.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { PlateComponent } from './plate/plate.component';
     ButtonsComponent,
     SeccionAlbumComponent,
     EnvelopeComponent,
-    PlateComponent
+    PlateComponent,
+    PlateEnvelopeComponent
   ],
   imports: [
     BrowserModule,
