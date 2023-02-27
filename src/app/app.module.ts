@@ -10,7 +10,7 @@ import { SeccionAlbumComponent } from './seccion-album/seccion-album.component';
 import { EnvelopeComponent } from './envelope/envelope.component';
 import { PlateComponent } from './plate/plate.component';
 import { PlateEnvelopeComponent } from './plate-envelope/plate-envelope.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,8 @@ import { PlateEnvelopeComponent } from './plate-envelope/plate-envelope.componen
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

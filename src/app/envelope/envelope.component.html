@@ -1,6 +1,6 @@
 <div id="header-envelope">
-  <div class="envelope" *ngFor="let item of envelopes">
-    <picture>
+  <div class="envelope" *ngFor="let item of envelopes; index as i">
+    <picture (click)="onClicEnvelope()">
       <source type="image/webp"
         srcset="../../assets/envelope-flat-2.webp 1x, ../../assets/envelope-flat-2.webp 2x">
       <source type="image/png"
@@ -11,10 +11,10 @@
 </div>
 <div id="content-envelope">
   <div id="plates-container">
-    <plate-envelope></plate-envelope>
-    <plate-envelope></plate-envelope>
-    <plate-envelope></plate-envelope>
-    <plate-envelope></plate-envelope>
-    <plate-envelope></plate-envelope>
+    <plate-envelope [isOpen]="isOpenPlateOne"></plate-envelope>
+    <plate-envelope [isOpen]="isOpenPlateTwo"></plate-envelope>
+    <plate-envelope [isOpen]="isOpenPlateThree"></plate-envelope>
+    <plate-envelope [isOpen]="isOpenPlateFour"></plate-envelope>
+    <plate-envelope [isOpen]="isOpenPlateFive"></plate-envelope>
   </div>
 </div>
