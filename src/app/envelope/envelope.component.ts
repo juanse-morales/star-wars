@@ -10,15 +10,15 @@ import { EnvelopeService } from './envelope.service';
 export class EnvelopeComponent implements OnInit {
   public envelopes = new Array(4);
   public isOpenPlate: boolean = false;
-  public envelopeContent: any = {};  
+  public envelopeContent: any = {};
 
   private envelopeConfiguration: any = config.envelopeConfiguration;
   private countPlatesCategory: any = config.countPlatesCategory;
   private categories: Array<string> = config.categories;
 
-  public onClicEnvelope (): void {
+  public onClicEnvelope(): void {
     this.isOpenPlate = !this.isOpenPlate;
-  } 
+  }
 
   constructor(
     private envelopeService: EnvelopeService
@@ -27,7 +27,7 @@ export class EnvelopeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
+
   }
 
   /* TODO: Change the implementation of getting random number to a more secure one
@@ -48,6 +48,10 @@ export class EnvelopeComponent implements OnInit {
     return configuration[nameCategory];
   }
 
+  private getDataConfig(configuration: any, nameCategory: string): any {
+    return configuration[nameCategory];
+  }
+
   private getRandomPlatesPerCategory(nameCategory: string): any {
     let envelopeConfigurationLocal: any = this.getEnvelopeConfiguration();
 
@@ -57,37 +61,35 @@ export class EnvelopeComponent implements OnInit {
 
     let flag: boolean = true;
 
-    while (flag) {
-      if (countPlatesCategoryForEnvelope > 0) {
-        let randomNumber = this.getRandomNumber(1, countTotalPlatesCategory);
-        if (arrayRandomNumbersForPlatesCategory.indexOf(randomNumber) < 0) {
-          arrayRandomNumbersForPlatesCategory.push(randomNumber);
-        }
-
-        if (arrayRandomNumbersForPlatesCategory.length >= countPlatesCategoryForEnvelope) {
-          flag = false;
-        }
-      } else {
-        flag = false;
+    while (arrayRandomNumbersForPlatesCategory.length < countPlatesCategoryForEnvelope && countPlatesCategoryForEnvelope > 0) {
+      let randomNumber = this.getRandomNumber(1, countTotalPlatesCategory);
+      if (arrayRandomNumbersForPlatesCategory.indexOf(randomNumber) < 0) {
+        arrayRandomNumbersForPlatesCategory.push(randomNumber);
       }
     }
 
     return arrayRandomNumbersForPlatesCategory;
   }
 
-  private getEnvelopeContents () {
+  private getEnvelopeContents() {
     let arrayPlateContent: Array<any> = [];
     for (let index: number = 0; index < this.categories.length; index++) {
       let nameCategory = this.categories[index];
-      let arrayIdCategory = this.getRandomPlatesPerCategory(nameCategory);
-      for (let indexB: number = 0; indexB < arrayIdCategory.length; indexB++) {
-        this.envelopeService.getPlateCategoryById(nameCategory, arrayIdCategory[indexB])
-          .subscribe(
-            (data: any) => {
-              arrayPlateContent.push(data);
-            }
-          );
+      let arrayIndexCategory: Array<number> = this.getRandomPlatesPerCategory(nameCategory);
+      console.log('indexCategory', arrayIndexCategory);
+
+
+      let dataAll: Array<any> = new Array();
+      let arrayUrl = this.getDataConfig(config.serverUrl, nameCategory);
+      let pageUrl = arrayUrl[1];
+
+      for (let indexB: number = 1; indexB <= pageUrl; indexB++) {
+        this.envelopeService.getPlateCategoryAll(nameCategory, indexB).subscribe((data: any) => {
+          dataAll = dataAll.concat(data.results);
+        });
       }
+
+      arrayIndexCategory.forEach(currentValue => arrayPlateContent.push(dataAll[currentValue]));
     }
 
     return arrayPlateContent;
