@@ -14,12 +14,12 @@ export class EnvelopeService {
 
   }
 
-  private getUrlCategory(configuration: any, nameCategory: string): string {
-    return configuration[nameCategory];
+  private getUrlCategory(configuration: any, nameCategory: string): string{
+    return configuration[nameCategory][0];
   }
 
-  public getPlateCategoryById (nameCategory: string, id: number) {
-    let url: string = this.getUrlCategory(config.serverUrl, nameCategory);
-    return this.http.get(`${url}${id}`);
+  public getPlateCategoryAll(nameCategory: string, page: number) {
+    let url: string = `${this.getUrlCategory(config.serverUrl, nameCategory)}${page}`;
+    return this.http.get(url);
   }
 }
