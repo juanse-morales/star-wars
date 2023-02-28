@@ -19,9 +19,9 @@ export const config = {
   },
   categories: ['films', 'peoples', 'starships'],
   serverUrl: {
-    films: "https://swapi.dev/api/films/",
-    peoples: "https://swapi.dev/api/people/",
-    starships: "https://swapi.dev/api/starships/"
+    films: ["https://swapi.dev/api/films/?page=", 1],
+    peoples: ["https://swapi.dev/api/people/?page=", 9],
+    starships: ["https://swapi.dev/api/starships/?page=", 4]
   }
 
 }
