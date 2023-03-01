@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { config } from '../_config/config';
 import { EnvelopeService } from './envelope.service';
 import { firstValueFrom } from 'rxjs';
+import { ngxLoadingAnimationTypes } from 'ngx-loading';
 
 @Component({
   selector: 'app-envelope',
@@ -12,11 +13,17 @@ export class EnvelopeComponent implements OnInit {
   public envelopes: Array<any>;
   public envelopePlates: Array<any>;
   public isOpenPlate: boolean;
+  public loading: boolean;
+  public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+
+  private counterLoading: number;
 
   constructor(
     private envelopeService: EnvelopeService
   ) {
     this.isOpenPlate = false;
+    this.loading = true;
+    this.counterLoading = 0;
     this.envelopes = new Array();
     this.envelopePlates = new Array();
 
@@ -93,11 +100,17 @@ export class EnvelopeComponent implements OnInit {
     console.log('envelopeConfiguration', envelopeConfiguration);
     let arrayPlatesEnvelope = new Array();
 
+
     config.categories.forEach((nameCategory) => {
       const arrayRandomPlates: Array<number> = this.getRandomPlatesPerCategory(nameCategory, envelopeConfiguration);
       arrayRandomPlates.forEach((numberPlate) => {
         this.getDataFromPage(nameCategory, this.getPageForUrl(numberPlate)).then(data => {
           arrayPlatesEnvelope.push(data.results[this.getIndexResult(numberPlate)]);
+        }).finally(() => {
+          this.counterLoading++;
+          if (this.counterLoading === (config.numberEnvelope * config.numberPlatesEnvelope)) {
+            this.loading = false;
+          }
         });
       });
     });
