@@ -32,25 +32,15 @@ export class PlateEnvelopeComponent implements OnInit {
   @Input() public isOpen: boolean = false;
   @Input() public contentPlate: any;
 
-  public arrayPlates: Array<any>;
-
   constructor (
 
   ) {
-    this.arrayPlates = new Array();
     
   }
 
   ngOnInit(): void {
     console.log('contentPlate', this.contentPlate);
-    this.organizeArray();
+    
   }
 
-  private organizeArray(): void {
-    this.contentPlate.forEach((array: Array<any>) => {
-      array.forEach((plate) => {
-        this.arrayPlates.push(plate);
-      });
-    });
-  }
 }
