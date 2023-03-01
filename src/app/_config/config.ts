@@ -19,10 +19,11 @@ export const config = {
   },
   categories: ['films', 'peoples', 'starships'],
   serverUrl: {
-    films: ["https://swapi.dev/api/films/?page=", 1],
-    peoples: ["https://swapi.dev/api/people/?page=", 9],
-    starships: ["https://swapi.dev/api/starships/?page=", 4]
+    films: "https://swapi.dev/api/films/?page=",
+    peoples: "https://swapi.dev/api/people/?page=",
+    starships: "https://swapi.dev/api/starships/?page="
   },
+  countDataPerPage: 10,
   numberEnvelope: 4,
   numberPlatesEnvelope: 5
 }
