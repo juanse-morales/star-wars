@@ -1,3 +1,11 @@
+#plates-container {
+  min-height: 170px;
+  
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+}
+
 .plate-envelope {
   
   margin: 5px;
