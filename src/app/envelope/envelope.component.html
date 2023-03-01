@@ -1,16 +1,12 @@
 <div id="header-envelope">
   <div class="envelope" *ngFor="let item of envelopes; index as i">
-    <picture (click)="onClicEnvelope()">
-      <source type="image/webp"
-        srcset="../../assets/envelope-flat-2.webp 1x, ../../assets/envelope-flat-2.webp 2x">
-      <source type="image/png"
-        srcset="../../assets/envelope-flat-2.png 1x, ../../assets/envelope-flat-2.png 2x">
+    <picture (click)="onClicEnvelope(i)">
+      <source type="image/webp" srcset="../../assets/envelope-flat-2.webp 1x, ../../assets/envelope-flat-2.webp 2x">
+      <source type="image/png" srcset="../../assets/envelope-flat-2.png 1x, ../../assets/envelope-flat-2.png 2x">
       <img src="../../assets/envelope-flat-2.png" alt="Sobre" loading="lazy" width="250px">
     </picture>
   </div>
 </div>
 <div id="content-envelope">
-  <div id="plates-container">
-    <plate-envelope *ngFor="let item of platesEnvelope" [isOpen]="isOpenPlate"></plate-envelope>
-  </div>
+  <plate-envelope [contentPlate]="contentPlateSelected" *ngIf="isOpenPlate" [isOpen]="isOpenPlate"></plate-envelope>
 </div>

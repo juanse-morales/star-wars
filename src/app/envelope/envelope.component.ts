@@ -10,27 +10,23 @@ import { firstValueFrom } from 'rxjs';
 })
 export class EnvelopeComponent implements OnInit {
   public envelopes: Array<any>;
-  public platesEnvelope: Array<any>;
+  public contentPlateSelected: any;
   public isOpenPlate: boolean = false;
-  public envelopeContent: any = {};
   
-
-  public onClicEnvelope(): void {
-    this.isOpenPlate = !this.isOpenPlate;
-  }
-
   constructor(
     private envelopeService: EnvelopeService
   ) {
     this.envelopes = new Array();
-    this.platesEnvelope = new Array(config.numberPlatesEnvelope);
-    
     this.buildEnvelopes();
-    
   }
 
   ngOnInit(): void {
 
+  }
+
+  public onClicEnvelope(indexEnvelope: number): void {
+    this.isOpenPlate = !this.isOpenPlate;
+    this.contentPlateSelected = this.envelopes[indexEnvelope];
   }
 
   /* TODO: Change the implementation of getting random number to a more secure one
