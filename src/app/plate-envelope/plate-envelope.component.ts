@@ -13,6 +13,7 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
           'min-width': '220px',
           'min-height': '155px',
           border: '2pt solid rgb(112, 161, 163)',
+          visibility: 'visible'
         })
       ),
       state(
@@ -21,6 +22,7 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
           'min-width': '0px',
           'min-height': '0px',
           border: 'none',
+          visibility: 'hidden'
         })
       ),
       transition('open => closed', [animate('400ms 0s ease-out')]),
