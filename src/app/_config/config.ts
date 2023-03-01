@@ -17,6 +17,11 @@ export const config = {
     "peoples": 82,
     "starships": 36
   },
+  specialIndexesCategory: {
+    films: 6,
+    peoples: 20,
+    starships: 10
+  },
   categories: ['films', 'peoples', 'starships'],
   serverUrl: {
     films: "https://swapi.dev/api/films/?page=",
