@@ -22,6 +22,7 @@ export const config = {
     films: ["https://swapi.dev/api/films/?page=", 1],
     peoples: ["https://swapi.dev/api/people/?page=", 9],
     starships: ["https://swapi.dev/api/starships/?page=", 4]
-  }
-
+  },
+  numberEnvelope: 4,
+  numberPlatesEnvelope: 5
 }
