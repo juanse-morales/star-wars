@@ -1,8 +1,58 @@
 .plate-envelope {
-  
   margin: 5px;
   border-radius: 5px;
   background: rgba(69, 184, 172, .15);
   backdrop-filter: blur(5px);
-  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.header-plate {
+  display: flex;
+}
+
+.id-plate {
+  font-size: 15pt;
+  margin: 5px;
+  color: aquamarine;
+}
+
+.name-plate {
+  font-size: 15pt;
+  margin: 5px;
+  color: rgb(112, 161, 163);
+}
+
+.content-plate {
+  display: flex;
+  align-items: center;
+}
+
+.category-plate {
+  min-width: 100px;
+  font-size: 15pt;
+  margin: 5px;
+  color: rgb(112, 161, 163);
+}
+
+.seccion-plate {
+  min-width: 100px;
+  font-size: 15pt;
+  margin: 5px;
+  color: rgb(112, 161, 163);
+}
+
+.footer-plate {
+  display: flex;
+  min-height: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn-add {
+  color: aquamarine;
+}
+
+.btn-discard {
+  color: rgba(250, 165, 53, 0.938);
 }
