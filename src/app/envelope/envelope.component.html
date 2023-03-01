@@ -11,10 +11,6 @@
 </div>
 <div id="content-envelope">
   <div id="plates-container">
-    <plate-envelope [isOpen]="isOpenPlate"></plate-envelope>
-    <plate-envelope [isOpen]="isOpenPlate"></plate-envelope>
-    <plate-envelope [isOpen]="isOpenPlate"></plate-envelope>
-    <plate-envelope [isOpen]="isOpenPlate"></plate-envelope>
-    <plate-envelope [isOpen]="isOpenPlate"></plate-envelope>
+    <plate-envelope *ngFor="let item of platesEnvelope" [isOpen]="isOpenPlate"></plate-envelope>
   </div>
 </div>
