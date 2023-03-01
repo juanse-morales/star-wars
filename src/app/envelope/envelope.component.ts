@@ -10,13 +10,16 @@ import { firstValueFrom } from 'rxjs';
 })
 export class EnvelopeComponent implements OnInit {
   public envelopes: Array<any>;
-  public contentPlateSelected: any;
-  public isOpenPlate: boolean = false;
-  
+  public envelopePlates: Array<any>;
+  public isOpenPlate: boolean;
+
   constructor(
     private envelopeService: EnvelopeService
   ) {
+    this.isOpenPlate = false;
     this.envelopes = new Array();
+    this.envelopePlates = new Array();
+
     this.buildEnvelopes();
   }
 
@@ -25,8 +28,8 @@ export class EnvelopeComponent implements OnInit {
   }
 
   public onClicEnvelope(indexEnvelope: number): void {
+    this.envelopePlates = this.envelopes[indexEnvelope];
     this.isOpenPlate = !this.isOpenPlate;
-    this.contentPlateSelected = this.envelopes[indexEnvelope];
   }
 
   /* TODO: Change the implementation of getting random number to a more secure one
@@ -47,7 +50,7 @@ export class EnvelopeComponent implements OnInit {
     return configuration[nameCategory];
   }
 
-  private getPage(numberToEvaluate: number): number {
+  private getPageForUrl(numberToEvaluate: number): number {
     const countDataPerPage: number = config.countDataPerPage;
     const module = numberToEvaluate % countDataPerPage;
     const quotient = numberToEvaluate / countDataPerPage;
@@ -60,7 +63,7 @@ export class EnvelopeComponent implements OnInit {
     }
   }
 
-  private getIndex(numberToEvaluate: number): number {
+  private getIndexResult(numberToEvaluate: number): number {
     const countDataPerPage: number = config.countDataPerPage;
     return (numberToEvaluate % countDataPerPage) - 1;
   }
@@ -80,33 +83,23 @@ export class EnvelopeComponent implements OnInit {
 
     return arrayRandomNumbersForPlatesCategory;
   }
-  
+
   private async getDataFromPage(nameCategory: string, pageNumber: number): Promise<any> {
     return await firstValueFrom(this.envelopeService.getPlateCategoryAll(nameCategory, pageNumber));
   }
 
-  private getDataServerArrayOfPlates(arrayRandomPlates: Array<number>, nameCategory: string): Array<any> {
-    let arrayPlatesCategory: Array<any> = new Array();
-    
-    arrayRandomPlates.forEach((numberPlate) => {
-      this.getDataFromPage(nameCategory, this.getPage(numberPlate)).then(
-        data => {          
-          arrayPlatesCategory.push(data.results[this.getIndex(numberPlate)]);
-        }
-      );
-    });
-
-    return arrayPlatesCategory;
-  }
-
   private buildAnEnvelope(): Array<any> {
     const envelopeConfiguration: any = this.getEnvelopeConfiguration();
-    console.log('envelopeConfiguration', envelopeConfiguration);    
-    let arrayPlatesEnvelope: Array<any> = new Array();
+    console.log('envelopeConfiguration', envelopeConfiguration);
+    let arrayPlatesEnvelope = new Array();
 
     config.categories.forEach((nameCategory) => {
       const arrayRandomPlates: Array<number> = this.getRandomPlatesPerCategory(nameCategory, envelopeConfiguration);
-      arrayPlatesEnvelope.push(this.getDataServerArrayOfPlates(arrayRandomPlates, nameCategory));
+      arrayRandomPlates.forEach((numberPlate) => {
+        this.getDataFromPage(nameCategory, this.getPageForUrl(numberPlate)).then(data => {
+          arrayPlatesEnvelope.push(data.results[this.getIndexResult(numberPlate)]);
+        });
+      });
     });
 
     return arrayPlatesEnvelope;

@@ -34,3 +34,11 @@ img:hover {
   background: #08182b;
   box-shadow: rgba(50, 50, 93, 0.25) 0px -1px 60px -78px inset, rgba(0, 0, 0, 0.3) 0px 3px 36px -3px inset;
 }
+
+#plates-container {
+  min-height: 170px;
+  
+  display: flex;
+  padding: 5px;
+  justify-content: center;
+}

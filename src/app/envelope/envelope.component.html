@@ -8,5 +8,7 @@
   </div>
 </div>
 <div id="content-envelope">
-  <plate-envelope [contentPlate]="contentPlateSelected" *ngIf="isOpenPlate" [isOpen]="isOpenPlate"></plate-envelope>
+  <div id="plates-container">
+    <plate-envelope *ngFor="let item of envelopePlates" [contentPlate]="item" [isOpen]="isOpenPlate"></plate-envelope>
+  </div>
 </div>
