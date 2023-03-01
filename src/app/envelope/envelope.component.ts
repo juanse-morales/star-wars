@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { config } from '../_config/config';
 import { EnvelopeService } from './envelope.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-envelope',
@@ -8,13 +9,11 @@ import { EnvelopeService } from './envelope.service';
   styleUrls: ['./envelope.component.css']
 })
 export class EnvelopeComponent implements OnInit {
-  public envelopes = new Array(4);
+  public envelopes: Array<any>;
+  public platesEnvelope: Array<any>;
   public isOpenPlate: boolean = false;
   public envelopeContent: any = {};
-
-  private envelopeConfiguration: any = config.envelopeConfiguration;
-  private countPlatesCategory: any = config.countPlatesCategory;
-  private categories: Array<string> = config.categories;
+  
 
   public onClicEnvelope(): void {
     this.isOpenPlate = !this.isOpenPlate;
@@ -23,7 +22,11 @@ export class EnvelopeComponent implements OnInit {
   constructor(
     private envelopeService: EnvelopeService
   ) {
-    console.log(this.getEnvelopeContents());
+    this.envelopes = new Array();
+    this.platesEnvelope = new Array(config.numberPlatesEnvelope);
+    
+    this.buildEnvelopes();
+    
   }
 
   ngOnInit(): void {
@@ -40,29 +43,40 @@ export class EnvelopeComponent implements OnInit {
   }
 
   private getEnvelopeConfiguration(): any {
-    let randomNumber: number = this.getRandomNumber(0, this.envelopeConfiguration.length - 1);
-    return this.envelopeConfiguration[randomNumber];
+    let randomNumber: number = this.getRandomNumber(0, config.envelopeConfiguration.length - 1);
+    return config.envelopeConfiguration[randomNumber];
   }
 
   private getCountPlatesCategory(configuration: any, nameCategory: string): number {
     return configuration[nameCategory];
   }
 
-  private getDataConfig(configuration: any, nameCategory: string): any {
-    return configuration[nameCategory];
+  private getPage(numberToEvaluate: number): number {
+    const countDataPerPage: number = config.countDataPerPage;
+    const module = numberToEvaluate % countDataPerPage;
+    const quotient = numberToEvaluate / countDataPerPage;
+    const result = Math.round(quotient);
+
+    if (module >= 5) {
+      return result;
+    } else {
+      return result + 1;
+    }
   }
 
-  private getRandomPlatesPerCategory(nameCategory: string): any {
-    let envelopeConfigurationLocal: any = this.getEnvelopeConfiguration();
+  private getIndex(numberToEvaluate: number): number {
+    const countDataPerPage: number = config.countDataPerPage;
+    return (numberToEvaluate % countDataPerPage) - 1;
+  }
 
-    let countPlatesCategoryForEnvelope: number = this.getCountPlatesCategory(envelopeConfigurationLocal, nameCategory);
-    let countTotalPlatesCategory: number = this.getCountPlatesCategory(this.countPlatesCategory, nameCategory);
+  private getRandomPlatesPerCategory(nameCategory: string, envelopeConfiguration: any): Array<number> {
+    let countPlatesCategoryForEnvelope: number = this.getCountPlatesCategory(envelopeConfiguration, nameCategory);
+    let countTotalPlatesCategory: number = this.getCountPlatesCategory(config.countPlatesCategory, nameCategory);
     let arrayRandomNumbersForPlatesCategory: Array<number> = [];
-
-    let flag: boolean = true;
 
     while (arrayRandomNumbersForPlatesCategory.length < countPlatesCategoryForEnvelope && countPlatesCategoryForEnvelope > 0) {
       let randomNumber = this.getRandomNumber(1, countTotalPlatesCategory);
+
       if (arrayRandomNumbersForPlatesCategory.indexOf(randomNumber) < 0) {
         arrayRandomNumbersForPlatesCategory.push(randomNumber);
       }
@@ -70,28 +84,41 @@ export class EnvelopeComponent implements OnInit {
 
     return arrayRandomNumbersForPlatesCategory;
   }
+  
+  private async getDataFromPage(nameCategory: string, pageNumber: number): Promise<any> {
+    return await firstValueFrom(this.envelopeService.getPlateCategoryAll(nameCategory, pageNumber));
+  }
 
-  private getEnvelopeContents() {
-    let arrayPlateContent: Array<any> = [];
-    for (let index: number = 0; index < this.categories.length; index++) {
-      let nameCategory = this.categories[index];
-      let arrayIndexCategory: Array<number> = this.getRandomPlatesPerCategory(nameCategory);
-      console.log('indexCategory', arrayIndexCategory);
+  private getDataServerArrayOfPlates(arrayRandomPlates: Array<number>, nameCategory: string): Array<any> {
+    let arrayPlatesCategory: Array<any> = new Array();
+    
+    arrayRandomPlates.forEach((numberPlate) => {
+      this.getDataFromPage(nameCategory, this.getPage(numberPlate)).then(
+        data => {          
+          arrayPlatesCategory.push(data.results[this.getIndex(numberPlate)]);
+        }
+      );
+    });
 
+    return arrayPlatesCategory;
+  }
 
-      let dataAll: Array<any> = new Array();
-      let arrayUrl = this.getDataConfig(config.serverUrl, nameCategory);
-      let pageUrl = arrayUrl[1];
+  private buildAnEnvelope(): Array<any> {
+    const envelopeConfiguration: any = this.getEnvelopeConfiguration();
+    console.log('envelopeConfiguration', envelopeConfiguration);    
+    let arrayPlatesEnvelope: Array<any> = new Array();
 
-      for (let indexB: number = 1; indexB <= pageUrl; indexB++) {
-        this.envelopeService.getPlateCategoryAll(nameCategory, indexB).subscribe((data: any) => {
-          dataAll = dataAll.concat(data.results);
-        });
-      }
+    config.categories.forEach((nameCategory) => {
+      const arrayRandomPlates: Array<number> = this.getRandomPlatesPerCategory(nameCategory, envelopeConfiguration);
+      arrayPlatesEnvelope.push(this.getDataServerArrayOfPlates(arrayRandomPlates, nameCategory));
+    });
 
-      arrayIndexCategory.forEach(currentValue => arrayPlateContent.push(dataAll[currentValue]));
+    return arrayPlatesEnvelope;
+  }
+
+  private buildEnvelopes(): void {
+    for (let index = 0; index < config.numberEnvelope; index++) {
+      this.envelopes.push(this.buildAnEnvelope());
     }
-
-    return arrayPlateContent;
   }
 }
