@@ -15,7 +15,7 @@ export class EnvelopeService {
   }
 
   private getUrlCategory(configuration: any, nameCategory: string): string{
-    return configuration[nameCategory][0];
+    return configuration[nameCategory];
   }
 
   public getPlateCategoryAll(nameCategory: string, page: number) {
