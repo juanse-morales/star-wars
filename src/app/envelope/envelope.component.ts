@@ -72,7 +72,13 @@ export class EnvelopeComponent implements OnInit {
 
   private getIndexResult(numberToEvaluate: number): number {
     const countDataPerPage: number = config.countDataPerPage;
-    return (numberToEvaluate % countDataPerPage) - 1;
+    let indexResult: number = numberToEvaluate % countDataPerPage;
+
+    if (indexResult !== 0) {
+      indexResult--;
+    }
+
+    return indexResult;
   }
 
   private getRandomPlatesPerCategory(nameCategory: string, envelopeConfiguration: any): Array<number> {
@@ -95,6 +101,22 @@ export class EnvelopeComponent implements OnInit {
     return await firstValueFrom(this.envelopeService.getPlateCategoryAll(nameCategory, pageNumber));
   }
 
+  private buildPlateMetaData(nameCategory: string, numberPlate: number, nameResource: string): any {
+    let isSpecial: boolean;
+    const configurationSpecial: any = config.specialIndexesCategory;
+    const countIndexesFirst: number = configurationSpecial[nameCategory];
+
+    if (numberPlate <= countIndexesFirst) {
+      isSpecial = true;
+    } else {
+      isSpecial = false;
+    }
+
+    return {
+      isSpecial, numberPlate, nameResource, nameCategory
+    };
+  }
+
   private buildAnEnvelope(): Array<any> {
     const envelopeConfiguration: any = this.getEnvelopeConfiguration();
     console.log('envelopeConfiguration', envelopeConfiguration);
@@ -105,8 +127,21 @@ export class EnvelopeComponent implements OnInit {
       const arrayRandomPlates: Array<number> = this.getRandomPlatesPerCategory(nameCategory, envelopeConfiguration);
       arrayRandomPlates.forEach((numberPlate) => {
         this.getDataFromPage(nameCategory, this.getPageForUrl(numberPlate)).then(data => {
-          arrayPlatesEnvelope.push(data.results[this.getIndexResult(numberPlate)]);
-        }).finally(() => {
+          console.log('numberPlate', numberPlate);
+          console.log('data results', data.results);
+
+          let plate = data.results[this.getIndexResult(numberPlate)];
+          let nameResource: string = '';
+
+          if (plate['name'] !== undefined) {
+            nameResource = plate['name'];
+          } else if (plate['title'] !== undefined) {
+            nameResource = plate['title'];
+          }
+
+          plate['metadata'] = this.buildPlateMetaData(nameCategory, numberPlate, nameResource);
+          arrayPlatesEnvelope.push(plate);
+        }).catch(err => console.log(err)).finally(() => {
           this.counterLoading++;
           if (this.counterLoading === (config.numberEnvelope * config.numberPlatesEnvelope)) {
             this.loading = false;
