@@ -5,6 +5,7 @@
   backdrop-filter: blur(5px);
   display: flex;
   flex-wrap: wrap;
+  max-width: 250px;
 }
 
 .plate-envelope-special {
@@ -14,6 +15,7 @@
   backdrop-filter: blur(5px);
   display: flex;
   flex-wrap: wrap;
+  max-width: 250px;
 }
 
 .header-plate {

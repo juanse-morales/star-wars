@@ -127,9 +127,6 @@ export class EnvelopeComponent implements OnInit {
       const arrayRandomPlates: Array<number> = this.getRandomPlatesPerCategory(nameCategory, envelopeConfiguration);
       arrayRandomPlates.forEach((numberPlate) => {
         this.getDataFromPage(nameCategory, this.getPageForUrl(numberPlate)).then(data => {
-          console.log('numberPlate', numberPlate);
-          console.log('data results', data.results);
-
           let plate = data.results[this.getIndexResult(numberPlate)];
           let nameResource: string = '';
 

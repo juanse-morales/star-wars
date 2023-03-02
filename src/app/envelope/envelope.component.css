@@ -31,6 +31,7 @@ img:hover {
 #content-envelope {
   min-height: 180px;
   margin-top: 7px;
+  padding: 8px 0 8px 0;
   border-radius: 10px;
   background: #08182b;
   box-shadow: rgba(50, 50, 93, 0.25) 0px -1px 60px -78px inset, rgba(0, 0, 0, 0.3) 0px 3px 36px -3px inset;
@@ -38,8 +39,10 @@ img:hover {
 
 #plates-container {
   min-height: 170px;
-  
   display: flex;
+  flex-wrap: wrap;
   padding: 5px;
   justify-content: center;
+  overflow: scroll;
+  max-height: 200px;
 }
