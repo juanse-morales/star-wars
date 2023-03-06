@@ -1,5 +1,3 @@
 <div id="seccion-album-component-container">
-  <seccion-album [title]="titleMovies" [platesCount]="platesCountMovies"></seccion-album>
-  <seccion-album [title]="titlePlayers" [platesCount]="platesCountPlayers"></seccion-album>
-  <seccion-album [title]="titleShips" [platesCount]="platesCountShips"></seccion-album>
+  <seccion-album *ngFor="let index of categoriesAlbum" [title]="index" [platesCount]="countPlatesCategoryAlbum[index]"></seccion-album>
 </div>

@@ -31,7 +31,6 @@ export class PlateEnvelopeComponent implements OnInit {
   @Input() public contentPlate: any;
 
   public isAdded: boolean = false;
-  public nameCategoryTranslated: string = '';
 
   constructor (
     private platesStorage: PlatesStorage
@@ -43,12 +42,10 @@ export class PlateEnvelopeComponent implements OnInit {
     console.log('contentPlate', this.contentPlate);
     
     this.isAdded = this.platesStorage.verifyPlate(this.contentPlate);
-    this.nameCategoryTranslated = this.getTranslateCategory(config.translateCategories, this.contentPlate.metadata.nameCategory);
+    
   }
 
-  private getTranslateCategory(configuration: any, nameCategory: string): string {
-    return configuration[nameCategory];
-  }
+  
 
   public onAddPlate (): void {
     this.platesStorage.addPlate(this.contentPlate);

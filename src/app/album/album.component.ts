@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { config } from '../_config/config';
 
 @Component({
   selector: 'album',
@@ -6,11 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./album.component.css']
 })
 export class AlbumComponent {
-  public titleMovies: string = "Películas";
-  public titlePlayers: string = "Personajes";
-  public titleShips: string = "Naves";
+  public countPlatesCategoryAlbum: any;
+  public categoriesAlbum;
 
-  public platesCountMovies: number = 6;
-  public platesCountPlayers: number = 82;
-  public platesCountShips: number = 36;
+  constructor(
+
+  ) {
+    this.countPlatesCategoryAlbum = config.countPlatesCategory;
+    this.categoriesAlbum = config.categories;
+  }
 }
