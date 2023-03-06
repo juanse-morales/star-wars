@@ -8,7 +8,7 @@
     <div id="title-main-container">
       <h2>{{title_main_container}}</h2>
     </div>
-    <div id="clock-container">
+    <div id="clock-container" *ngIf="blocked">
       <span id="clock">{{date | date:'mm:ss'}}</span>
     </div>
     

@@ -13,6 +13,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public title_main_container: string = '';
   public date: Date;
+  public blocked: boolean;
   
   private subscription$: Subscription;
   
@@ -32,9 +33,11 @@ export class AppComponent implements OnInit, OnDestroy {
     // fecha cualquiera inicializada con dos horas
     this.date = new Date('2000-01-01 00:01:00');
     this.subscription$ = new Subscription();
-    
+    this.blocked = false;
+
     this.clockService.getBlocked().subscribe(
       data => {
+        this.blocked = data;
         if (data) {
           this.counter();
         }
@@ -52,18 +55,13 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private counter() {
-    
-    // contador de las veces que el interval debe emitir
     let segundosEnDosHoras = 60;
-    // interval que emite cada segundo
+    
     this.subscription$ = interval(1000)
-      // tomar un valor mientras aun queden segundos en la cuenta
       .pipe(takeWhile(() => segundosEnDosHoras-- > 0))
       .subscribe({
-        // restar un segundo a la fecha actual
         next: () => {
           this.date = add(this.date, { seconds: -1 });
-          //this.clockService.setBlocked(true);
         },
         complete: () => this.clockService.setBlocked(false)
       });
