@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Subject } from "rxjs";
 import { config } from "../_config/config";
 
 @Injectable({
@@ -7,11 +7,21 @@ import { config } from "../_config/config";
 })
 export class PlatesStorage {
   private storage: BehaviorSubject<any>;
+  private plates: Subject<any>;
 
   constructor(
 
   ) {
     this.storage = new BehaviorSubject<any>(this.buildStorage());
+    this.plates = new Subject<any>();
+  }
+
+  public getPlatesObservable() {
+    return this.plates.asObservable();
+  }
+
+  public setPlatesObservable(value: any) {
+    this.plates.next(value);
   }
 
   public getStorageObservable() {
