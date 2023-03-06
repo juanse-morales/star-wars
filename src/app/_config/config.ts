@@ -23,6 +23,11 @@ export const config = {
     starships: 10
   },
   categories: ['films', 'peoples', 'starships'],
+  translateCategories: {
+    films: 'Película',
+    peoples: 'Personaje',
+    starships: 'Nave'
+  },
   serverUrl: {
     films: "https://swapi.dev/api/films/?page=",
     peoples: "https://swapi.dev/api/people/?page=",
