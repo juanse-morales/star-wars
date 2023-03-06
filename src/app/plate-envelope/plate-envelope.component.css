@@ -58,17 +58,18 @@
   align-items: center;
   flex: 1;
   justify-content: center;
+  min-width: 200px;
 }
 
 .seccion-plate-standard {
-  min-width: 120px;
+  
   font-size: 15pt;
   margin: 5px;
   color: rgb(112, 161, 163);
 }
 
 .seccion-plate-special {
-  min-width: 120px;
+  
   font-size: 15pt;
   margin: 5px;
   color: #11303f;
@@ -79,6 +80,11 @@
   min-height: 15px;
   justify-content: center;
   align-items: center;
+  flex: 1;
+}
+
+.btn {
+  cursor: pointer;
 }
 
 .btn-add-standard {
