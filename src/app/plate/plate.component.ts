@@ -6,18 +6,15 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./plate.component.css']
 })
 export class PlateComponent implements OnInit {
-  @Input() count: number = 0;
-
-  public arrayPlates: Array<number>;
+  @Input() public contentPlate: any;
 
   constructor (
 
   ) {
-    this.arrayPlates = [];
+    
   }
 
   ngOnInit () {
-    this.arrayPlates = new Array(this.count);
-       
+           
   }
 }
