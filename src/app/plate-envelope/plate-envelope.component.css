@@ -1,4 +1,7 @@
 .plate-envelope-standard {
+  min-width: 200px;
+  min-height: 130px;
+  border: 2pt solid rgb(112, 161, 163);
   margin: 5px;
   border-radius: 5px;
   background: rgba(69, 184, 172, .15);
@@ -9,29 +12,45 @@
 }
 
 .plate-envelope-special {
+  min-width: 200px;
+  min-height: 130px;
+  border: 2pt solid rgb(255, 158, 2);
   margin: 5px;
   border-radius: 5px;
-  background: rgba(255, 146, 4, 0.41);
-  backdrop-filter: blur(5px);
+  background: rgba(245, 168, 44, 0.8);
+  backdrop-filter: blur(15px);
   display: flex;
   flex-wrap: wrap;
   max-width: 250px;
+  box-shadow: rgba(255, 196, 83, 0.7) 0px 5px 15px;
 }
 
 .header-plate {
   display: flex;
 }
 
-.id-plate {
+.id-plate-standard {
   font-size: 15pt;
   margin: 5px;
   color: aquamarine;
 }
 
-.name-plate {
+.id-plate-special {
+  font-size: 15pt;
+  margin: 5px;
+  color: #11303f;
+}
+
+.name-plate-standard {
   font-size: 15pt;
   margin: 5px;
   color: rgb(112, 161, 163);
+}
+
+.name-plate-special {
+  font-size: 15pt;
+  margin: 5px;
+  color: #fff;
 }
 
 .content-plate {
@@ -41,11 +60,18 @@
   justify-content: center;
 }
 
-.seccion-plate {
+.seccion-plate-standard {
   min-width: 120px;
   font-size: 15pt;
   margin: 5px;
   color: rgb(112, 161, 163);
+}
+
+.seccion-plate-special {
+  min-width: 120px;
+  font-size: 15pt;
+  margin: 5px;
+  color: #11303f;
 }
 
 .footer-plate {
@@ -55,10 +81,18 @@
   align-items: center;
 }
 
-.btn-add {
+.btn-add-standard {
   color: aquamarine;
 }
 
-.btn-discard {
+.btn-add-special {
+  color: #fff;
+}
+
+.btn-discard-standard {
   color: rgba(250, 165, 53, 0.938);
+}
+
+.btn-discard-special {
+  color: red;
 }

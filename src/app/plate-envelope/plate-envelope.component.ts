@@ -10,18 +10,12 @@ import { trigger, state, transition, animate, style } from '@angular/animations'
       state(
         'open',
         style({
-          'min-width': '200px',
-          'min-height': '130px',
-          border: '2pt solid rgb(112, 161, 163)',
           visibility: 'visible'
         })
       ),
       state(
         'closed',
         style({
-          'min-width': '0px',
-          'min-height': '0px',
-          border: 'none',
           visibility: 'hidden'
         })
       ),
