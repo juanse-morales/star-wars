@@ -13,6 +13,7 @@ import { PlateEnvelopeComponent } from './plate-envelope/plate-envelope.componen
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxLoadingModule } from "ngx-loading";
+import { TranslateCategoryPipe } from './translate-category.pipe';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgxLoadingModule } from "ngx-loading";
     SeccionAlbumComponent,
     EnvelopeComponent,
     PlateComponent,
-    PlateEnvelopeComponent
+    PlateEnvelopeComponent,
+    TranslateCategoryPipe
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <div id="seccion-album-container">
   <div id="title-seccion-container">
-    <p class="title-seccion">{{title}}: {{platesCount}}</p>
+    <p class="title-seccion">{{title | translateCategory}}: {{platesCount}}</p>
   </div>
   <div id="content-seccion">
     <plate [count]="platesCount"></plate>
