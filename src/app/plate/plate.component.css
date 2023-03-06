@@ -25,6 +25,7 @@
 
 .header-plate {
   display: flex;
+  min-width: 100%;
 }
 
 .id-plate-standard {

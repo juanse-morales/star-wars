@@ -1,28 +1,32 @@
 import { Injectable } from "@angular/core";
+import { BehaviorSubject } from "rxjs";
 import { config } from "../_config/config";
 
 @Injectable({
   providedIn: "root"
 })
 export class PlatesStorage {
-  private storage: any;
+  private storage: BehaviorSubject<any>;
 
   constructor(
 
   ) {
-    this.storage = {};
+    this.storage = new BehaviorSubject<any>(this.buildStorage());
+  }
 
-    this.buildStorage();
+  public getStorageObservable() {
+    return this.storage.asObservable();
   }
 
   private getCountPlatesCategory(configuration: any, nameCategory: string): number {
     return configuration[nameCategory];
   }
 
-  private buildStorage(): void {
+  private buildStorage(): any {
+    let jsonDefault: any = {};
     config.categories.forEach((nameCategory: string) => {
       const sizeCategory: number = this.getCountPlatesCategory(config.countPlatesCategory, nameCategory);
-      this.storage[nameCategory] = new Array();
+      jsonDefault[nameCategory] = new Array();
 
       for (let index = 1; index <= sizeCategory; index++) {
         const element = {
@@ -34,23 +38,23 @@ export class PlatesStorage {
             nameCategory: ''
           }
         };
-        this.storage[nameCategory].push(element);
+        jsonDefault[nameCategory].push(element);
       }
     });
+    return jsonDefault;
   }
 
   public addPlate(plate: any): void {
-    if (this.verifyPlate(plate)) {
+    if (!this.verifyPlate(plate)) {
       plate['metadata']['isAdded'] = true;
-      this.storage[plate.metadata.nameCategory][plate.metadata.numberPlate] = plate;
+      const valueCurrent: any = this.storage.getValue();
+      
+      valueCurrent[plate.metadata.nameCategory][plate.metadata.numberPlate - 1] = plate;
+      this.storage.next(valueCurrent);
     }
   }
 
   public verifyPlate(plate: any): boolean {
-    return this.storage[plate.metadata.nameCategory][plate.metadata.numberPlate]['metadata']['isAdded'];
-  }
-
-  public getArrayCategory(nameCategory: string) {
-    return this.storage[nameCategory];
+    return this.storage.getValue()[plate.metadata.nameCategory][plate.metadata.numberPlate - 1]['metadata']['isAdded'];
   }
 }
