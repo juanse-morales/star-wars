@@ -4,10 +4,10 @@
     <p [ngClass]="contentPlate.metadata.isSpecial?'name-plate-special':'name-plate-standard'">{{contentPlate.metadata.nameResource}}</p>
   </div>
   <div class="content-plate">
-    <p class="seccion-plate" [ngClass]="contentPlate.metadata.isSpecial?'seccion-plate-special':'seccion-plate-standard'">{{contentPlate.metadata.nameCategory | translateCategory}}</p>
+    <p [ngClass]="contentPlate.metadata.isSpecial?'seccion-plate-special':'seccion-plate-standard'">{{contentPlate.metadata.nameCategory | translateCategory}}</p>
   </div>
   <div class="footer-plate">
-    <a *ngIf="isAdded" (click)="onAddPlate()" class="btn" [ngClass]="contentPlate.metadata.isSpecial?'btn-add-special':'btn-add-standard'">Añadir</a>
-    <a *ngIf="!isAdded" (click)="isOpen = false" class="btn" [ngClass]="contentPlate.metadata.isSpecial?'btn-discard-special':'btn-discard-standard'">Descartar</a>
+    <a *ngIf="!contentPlate.metadata.isAdded" (click)="onAddPlate()" class="btn" [ngClass]="contentPlate.metadata.isSpecial?'btn-add-special':'btn-add-standard'">Añadir</a>
+    <a *ngIf="contentPlate.metadata.isAdded" (click)="isOpen = false" class="btn" [ngClass]="contentPlate.metadata.isSpecial?'btn-discard-special':'btn-discard-standard'">Descartar</a>
   </div>
 </div>

@@ -30,7 +30,7 @@ export class PlateEnvelopeComponent implements OnInit {
   @Input() public isOpen: boolean = false;
   @Input() public contentPlate: any;
 
-  public isAdded: boolean = false;
+  //public isAdded: boolean = false;
 
   constructor (
     private platesStorage: PlatesStorage
@@ -41,7 +41,7 @@ export class PlateEnvelopeComponent implements OnInit {
   ngOnInit(): void {
     console.log('contentPlate', this.contentPlate);
     
-    this.isAdded = this.platesStorage.verifyPlate(this.contentPlate);
+    //this.isAdded = this.platesStorage.verifyPlate(this.contentPlate);
     
   }
 
@@ -50,7 +50,7 @@ export class PlateEnvelopeComponent implements OnInit {
   public onAddPlate (): void {
     this.platesStorage.addPlate(this.contentPlate);
     this.isOpen = !this.isOpen;
-    this.isAdded = !this.isAdded;
+    //this.isAdded = !this.isAdded;
   }
 
 }
