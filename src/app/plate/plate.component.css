@@ -1,7 +1,6 @@
 .plate {
   display: flex;
-  min-height: 150px;
-  /* min-width: 265px; */
+  min-height: 80px;
   margin: 8px;
   background: rgba(69, 184, 172, .15);
   backdrop-filter: blur(5px);
@@ -60,14 +59,16 @@
   min-width: 200px;
 }
 
-.seccion-plate-standard {
-  font-size: 15pt;
+.btn-plate {
+  cursor: pointer;
+  font-size: 12pt;
   margin: 5px;
+}
+
+.seccion-plate-standard {
   color: rgb(112, 161, 163);
 }
 
 .seccion-plate-special {
-  font-size: 15pt;
-  margin: 5px;
   color: #11303f;
 }

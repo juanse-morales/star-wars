@@ -3,6 +3,7 @@ import { config } from '../_config/config';
 import { EnvelopeService } from './envelope.service';
 import { firstValueFrom } from 'rxjs';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
+import { ClockService } from '../_services/clock.service';
 
 @Component({
   selector: 'app-envelope',
@@ -15,17 +16,24 @@ export class EnvelopeComponent implements OnInit {
   public isOpenPlate: boolean;
   public loading: boolean;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
+  public blocked: boolean;
 
   private counterLoading: number;
 
   constructor(
-    private envelopeService: EnvelopeService
+    private envelopeService: EnvelopeService,
+    private clockService: ClockService
   ) {
     this.isOpenPlate = false;
     this.loading = true;
     this.counterLoading = 0;
     this.envelopes = new Array();
     this.envelopePlates = new Array();
+    this.blocked = false;
+
+    this.clockService.getBlocked().subscribe(
+      data => this.blocked = data
+    )
 
     this.buildEnvelopes();
   }
@@ -35,6 +43,8 @@ export class EnvelopeComponent implements OnInit {
   }
 
   public onClicEnvelope(indexEnvelope: number): void {
+    this.blocked = true;
+    this.clockService.setBlocked(true);
     this.envelopePlates = this.envelopes[indexEnvelope];
     this.isOpenPlate = !this.isOpenPlate;
   }

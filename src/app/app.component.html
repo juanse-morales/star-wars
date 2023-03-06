@@ -8,6 +8,9 @@
     <div id="title-main-container">
       <h2>{{title_main_container}}</h2>
     </div>
+    <div id="clock-container">
+      <span id="clock">{{date | date:'mm:ss'}}</span>
+    </div>
     
     <buttons (title_main)="onReceiveTitle($event)"></buttons>
     

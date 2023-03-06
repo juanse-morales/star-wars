@@ -24,8 +24,6 @@ export class SeccionAlbumComponent implements OnInit {
     this.platesStorage.getStorageObservable().subscribe(
       (data) => {
         this.arrayPlates = data[this.title];
-        //console.log('data', data);
-        
       }
     );
   }

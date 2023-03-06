@@ -26,25 +26,20 @@ import { config } from '../_config/config';
     ]),
   ],
 })
-export class PlateEnvelopeComponent implements OnInit {
+export class PlateEnvelopeComponent {
   @Input() public isOpen: boolean = false;
   @Input() public contentPlate: any;
 
-  constructor (
+  constructor(
     private platesStorage: PlatesStorage
   ) {
-    
+
   }
 
-  ngOnInit(): void {
-  }
-
-  
-
-  public onAddPlate (): void {
+  public onAddPlate(): void {
     this.platesStorage.addPlate(this.contentPlate);
     this.isOpen = !this.isOpen;
-    
+
   }
 
 }

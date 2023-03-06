@@ -26,6 +26,10 @@ header {
   flex: 1;
 }
 
+#clock {
+  color: white;
+}
+
 #content-main {
   margin: 10px;
   min-height: 350px;

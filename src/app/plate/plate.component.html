@@ -4,6 +4,6 @@
     <p [ngClass]="contentPlate.metadata.isSpecial?'name-plate-special':'name-plate-standard'">{{contentPlate.metadata.nameResource}}</p>
   </div>
   <div class="content-plate">
-    <p class="seccion-plate" [ngClass]="contentPlate.metadata.isSpecial?'seccion-plate-special':'seccion-plate-standard'">{{contentPlate.metadata.nameCategory | translateCategory}}</p>
+    <a class="btn-plate" *ngIf="contentPlate.metadata.isAdded" [ngClass]="contentPlate.metadata.isSpecial?'seccion-plate-special':'seccion-plate-standard'">Ver más</a>
   </div>
 </div>

@@ -9,6 +9,10 @@
   padding: 0 15px;
 }
 
+.disable-pointer {
+  pointer-events: none;
+}
+
 .envelope {
   display: flex;
   justify-content: center;
