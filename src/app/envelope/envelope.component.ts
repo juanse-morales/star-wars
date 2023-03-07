@@ -81,6 +81,10 @@ export class EnvelopeComponent implements OnInit {
       this.envelopeBlocked = false;
     }
 
+    if (this.envelopes.length === 0) {
+      this.buildEnvelopes();
+    }
+
     this.platesStorage.setPlatesOpen(this.envelopePlates);
   }
 
