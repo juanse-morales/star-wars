@@ -56,10 +56,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   private counter() {
     this.date = new Date('2000-01-01 00:01:00');
-    let segundosEnDosHoras = 60;
+    let countSeconds = 60;
     
     this.subscription$ = interval(1000)
-      .pipe(takeWhile(() => segundosEnDosHoras-- > 0))
+      .pipe(takeWhile(() => countSeconds-- > 0))
       .subscribe({
         next: () => {
           this.date = add(this.date, { seconds: -1 });

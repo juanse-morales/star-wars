@@ -51,6 +51,10 @@ export class EnvelopeComponent implements OnInit {
       this.envelopes = this.platesStorage.getPlatesEnvelope();
       this.envelopePlates = this.platesStorage.getPlatesOpen();
     }
+
+    if (this.envelopes.length !== 0) {
+      this.envelopeBlocked = false;
+    }
   }
 
   ngOnInit(): void {
@@ -82,6 +86,7 @@ export class EnvelopeComponent implements OnInit {
     }
 
     if (this.envelopes.length === 0) {
+      this.loading = true;
       this.buildEnvelopes();
     }
 
