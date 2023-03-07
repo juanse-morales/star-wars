@@ -7,11 +7,13 @@ import { BehaviorSubject } from "rxjs";
 })
 export class ClockService {
   private blocked: BehaviorSubject<boolean>;
+  private envelopeBlocked: BehaviorSubject<boolean>;
 
   constructor(
 
   ) {
     this.blocked = new BehaviorSubject<boolean>(false);
+    this.envelopeBlocked = new BehaviorSubject<boolean>(false);
   }
 
   public getBlocked() {
@@ -20,5 +22,13 @@ export class ClockService {
 
   public setBlocked(value: boolean) {
     this.blocked.next(value);
+  }
+
+  public getEnvelopeBlocked() {
+    return this.envelopeBlocked.asObservable();
+  }
+
+  public setEnvelopeBlocked(value: boolean) {
+    this.envelopeBlocked.next(value);
   }
 }

@@ -8,6 +8,6 @@
   </div>
   <div class="footer-plate">
     <a *ngIf="!contentPlate.metadata.isAdded" (click)="onAddPlate()" class="btn" [ngClass]="contentPlate.metadata.isSpecial?'btn-add-special':'btn-add-standard'">Añadir</a>
-    <a *ngIf="contentPlate.metadata.isAdded" (click)="isOpen = false" class="btn" [ngClass]="contentPlate.metadata.isSpecial?'btn-discard-special':'btn-discard-standard'">Descartar</a>
+    <a *ngIf="contentPlate.metadata.isAdded" (click)="onDiscardPlate()" class="btn" [ngClass]="contentPlate.metadata.isSpecial?'btn-discard-special':'btn-discard-standard'">Descartar</a>
   </div>
 </div>

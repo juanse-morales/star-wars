@@ -18,6 +18,7 @@ export class EnvelopeComponent implements OnInit {
   public loading: boolean;
   public ngxLoadingAnimationTypes = ngxLoadingAnimationTypes;
   public blocked: boolean;
+  public envelopeBlocked: boolean;
 
   private counterLoading: number;
 
@@ -32,20 +33,23 @@ export class EnvelopeComponent implements OnInit {
     this.envelopes = new Array();
     this.envelopePlates = new Array();
     this.blocked = false;
+    this.envelopeBlocked = false;
 
     this.clockService.getBlocked().subscribe(
-      data => {
-        this.blocked = data;
-      }
+      data => this.blocked = data
     );
 
-    if (!this.blocked) {
+    this.clockService.getEnvelopeBlocked().subscribe(
+      data => this.envelopeBlocked = data
+    )
+
+    if (!this.blocked && !this.envelopeBlocked) {
       this.buildEnvelopes();
     } else {
-      this.loading = false;      
-      this.isOpenPlate = !this.isOpenPlate;
-      this.envelopes = this.platesStorage.getPlates();
-      this.envelopePlates = this.envelopes[this.platesStorage.getIndexEnvelopeSelected()];
+      this.loading = false;
+      this.isOpenPlate = true;
+      this.envelopes = this.platesStorage.getPlatesEnvelope();
+      this.envelopePlates = this.platesStorage.getPlatesOpen();
     }
   }
 
@@ -54,11 +58,30 @@ export class EnvelopeComponent implements OnInit {
   }
 
   public onClicEnvelope(indexEnvelope: number): void {
-    this.platesStorage.setIndexEnvelopeSelected(indexEnvelope);
     this.blocked = true;
+    this.envelopeBlocked = true;
     this.clockService.setBlocked(true);
+    this.clockService.setEnvelopeBlocked(true);
+    this.isOpenPlate = true;
+
     this.envelopePlates = this.envelopes[indexEnvelope];
-    this.isOpenPlate = !this.isOpenPlate;
+    this.platesStorage.setPlatesOpen(this.envelopePlates);
+    this.platesStorage.setIndexEnvelopeSelected(indexEnvelope);
+  }
+
+  public onReceivePlateToRemove(event: any) {
+    this.envelopePlates = this.envelopePlates.filter((value) => {
+      if (value !== event) {
+        return value;
+      }
+    });
+
+    if (this.envelopePlates.length === 0) {
+      this.envelopes.splice(this.platesStorage.getIndexEnvelopeSelected(), 1);
+      this.envelopeBlocked = false;
+    }
+
+    this.platesStorage.setPlatesOpen(this.envelopePlates);
   }
 
   /* TODO: Change the implementation of getting random number to a more secure one
@@ -159,6 +182,7 @@ export class EnvelopeComponent implements OnInit {
           }
 
           plate['metadata'] = this.buildPlateMetaData(nameCategory, numberPlate, nameResource);
+          plate['metadata']['isAdded'] = this.platesStorage.verifyPlate(plate);
           arrayPlatesEnvelope.push(plate);
         })
           .catch(err => console.log(err))
@@ -166,7 +190,7 @@ export class EnvelopeComponent implements OnInit {
             this.counterLoading++;
             if (this.counterLoading === (config.numberEnvelope * config.numberPlatesEnvelope)) {
               this.loading = false;
-              this.platesStorage.setPlates(this.envelopes);
+              this.platesStorage.setPlatesEnvelope(this.envelopes);
             }
           });
       });

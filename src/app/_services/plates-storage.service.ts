@@ -7,8 +7,9 @@ import { config } from "../_config/config";
 })
 export class PlatesStorage {
   private storage: BehaviorSubject<any>;
-  private plates: any;
+  private platesEnvelope: any;
   private indexEnvelopeSelected: number;
+  private platesOpen: any;
 
   constructor(
 
@@ -25,12 +26,20 @@ export class PlatesStorage {
     this.indexEnvelopeSelected = value;
   }
 
-  public getPlates() {
-    return this.plates;
+  public getPlatesEnvelope() {
+    return this.platesEnvelope;
   }
 
-  public setPlates(value: any) {
-    this.plates = value;
+  public setPlatesEnvelope(value: any) {
+    this.platesEnvelope = value;
+  }
+
+  public getPlatesOpen() {
+    return this.platesOpen;
+  }
+
+  public setPlatesOpen(value: any) {
+    this.platesOpen = value;
   }
 
   public getStorageObservable() {

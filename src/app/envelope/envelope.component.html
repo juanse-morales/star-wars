@@ -1,4 +1,4 @@
-<div id="header-envelope" [ngClass]="blocked?'disable-pointer':''">
+<div id="header-envelope" [ngClass]="(blocked || envelopeBlocked)?'disable-pointer':''">
   <div class="envelope" *ngFor="let item of envelopes; index as i">
     <picture (click)="onClicEnvelope(i)">
       <source type="image/webp" srcset="../../assets/envelope-flat-2.webp 1x, ../../assets/envelope-flat-2.webp 2x">
@@ -15,6 +15,6 @@
 </div>
 <div id="content-envelope">
   <div id="plates-container">
-    <plate-envelope *ngFor="let item of envelopePlates" [contentPlate]="item" [isOpen]="isOpenPlate"></plate-envelope>
+    <plate-envelope *ngFor="let item of envelopePlates" [contentPlate]="item" [isOpen]="isOpenPlate" (emitPlateToRemove)="onReceivePlateToRemove($event)"></plate-envelope>
   </div>
 </div>

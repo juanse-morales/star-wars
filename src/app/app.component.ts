@@ -55,6 +55,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   private counter() {
+    this.date = new Date('2000-01-01 00:01:00');
     let segundosEnDosHoras = 60;
     
     this.subscription$ = interval(1000)
