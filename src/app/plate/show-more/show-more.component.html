@@ -1,0 +1,20 @@
+<div>
+  <!-- TOOLBAR -->
+  <mat-toolbar class="accent m-0">
+    <div fxFlex fxLayout="row" fxLayoutAlign="space-between center">
+      <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+        <!-- TITLE -->
+        <span class="title dialog-title">Más información</span>
+      </div>
+      <!-- CLOSE DIALOG BUTTON -->
+      <button mat-icon-button (click)="matDialogRef.close()" aria-label="Close Dialog">
+        <mat-icon>close</mat-icon>
+      </button>
+      <!-- / CLOSE DIALOG BUTTON -->
+    </div>
+  </mat-toolbar>
+  <!-- / TOOLBAR -->
+  <div>
+    <pre><div id="content-dialog">{{data | json}}</div></pre>
+  </div>
+</div>

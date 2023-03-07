@@ -14,6 +14,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxLoadingModule } from "ngx-loading";
 import { TranslateCategoryPipe } from './translate-category.pipe';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { ShowMoreComponent } from './plate/show-more/show-more.component';
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -25,7 +29,8 @@ import { TranslateCategoryPipe } from './translate-category.pipe';
     EnvelopeComponent,
     PlateComponent,
     PlateEnvelopeComponent,
-    TranslateCategoryPipe
+    TranslateCategoryPipe,
+    ShowMoreComponent
   ],
   imports: [
     BrowserModule,
@@ -33,8 +38,16 @@ import { TranslateCategoryPipe } from './translate-category.pipe';
     BrowserAnimationsModule,
     HttpClientModule,
     NgxLoadingModule.forRoot({}),
+    
+    // Angular Material
+    MatDialogModule,
+    MatIconModule,
+    MatToolbarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ShowMoreComponent
+  ]
 })
 export class AppModule { }
