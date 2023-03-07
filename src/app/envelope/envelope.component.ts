@@ -4,6 +4,7 @@ import { EnvelopeService } from './envelope.service';
 import { firstValueFrom } from 'rxjs';
 import { ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ClockService } from '../_services/clock.service';
+import { PlatesStorage } from '../_services/plates-storage.service';
 
 @Component({
   selector: 'app-envelope',
@@ -22,7 +23,8 @@ export class EnvelopeComponent implements OnInit {
 
   constructor(
     private envelopeService: EnvelopeService,
-    private clockService: ClockService
+    private clockService: ClockService,
+    private platesStorage: PlatesStorage
   ) {
     this.isOpenPlate = false;
     this.loading = true;
@@ -32,10 +34,19 @@ export class EnvelopeComponent implements OnInit {
     this.blocked = false;
 
     this.clockService.getBlocked().subscribe(
-      data => this.blocked = data
-    )
+      data => {
+        this.blocked = data;
+      }
+    );
 
-    this.buildEnvelopes();
+    if (!this.blocked) {
+      this.buildEnvelopes();
+    } else {
+      this.loading = false;      
+      this.isOpenPlate = !this.isOpenPlate;
+      this.envelopes = this.platesStorage.getPlates();
+      this.envelopePlates = this.envelopes[this.platesStorage.getIndexEnvelopeSelected()];
+    }
   }
 
   ngOnInit(): void {
@@ -43,6 +54,7 @@ export class EnvelopeComponent implements OnInit {
   }
 
   public onClicEnvelope(indexEnvelope: number): void {
+    this.platesStorage.setIndexEnvelopeSelected(indexEnvelope);
     this.blocked = true;
     this.clockService.setBlocked(true);
     this.envelopePlates = this.envelopes[indexEnvelope];
@@ -148,12 +160,15 @@ export class EnvelopeComponent implements OnInit {
 
           plate['metadata'] = this.buildPlateMetaData(nameCategory, numberPlate, nameResource);
           arrayPlatesEnvelope.push(plate);
-        }).catch(err => console.log(err)).finally(() => {
-          this.counterLoading++;
-          if (this.counterLoading === (config.numberEnvelope * config.numberPlatesEnvelope)) {
-            this.loading = false;
-          }
-        });
+        })
+          .catch(err => console.log(err))
+          .finally(() => {
+            this.counterLoading++;
+            if (this.counterLoading === (config.numberEnvelope * config.numberPlatesEnvelope)) {
+              this.loading = false;
+              this.platesStorage.setPlates(this.envelopes);
+            }
+          });
       });
     });
 

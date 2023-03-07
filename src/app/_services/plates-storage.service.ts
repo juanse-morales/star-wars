@@ -7,21 +7,30 @@ import { config } from "../_config/config";
 })
 export class PlatesStorage {
   private storage: BehaviorSubject<any>;
-  private plates: Subject<any>;
+  private plates: any;
+  private indexEnvelopeSelected: number;
 
   constructor(
 
   ) {
     this.storage = new BehaviorSubject<any>(this.buildStorage());
-    this.plates = new Subject<any>();
+    this.indexEnvelopeSelected = 0;
   }
 
-  public getPlatesObservable() {
-    return this.plates.asObservable();
+  public getIndexEnvelopeSelected(): number {
+    return this.indexEnvelopeSelected;
   }
 
-  public setPlatesObservable(value: any) {
-    this.plates.next(value);
+  public setIndexEnvelopeSelected(value: number): void {
+    this.indexEnvelopeSelected = value;
+  }
+
+  public getPlates() {
+    return this.plates;
+  }
+
+  public setPlates(value: any) {
+    this.plates = value;
   }
 
   public getStorageObservable() {
