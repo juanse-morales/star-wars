@@ -1,6 +1,10 @@
 # StarWars
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.6.
+It's a digital sticker collection diving in the STAR WARS universe. 
+
+
+
+## Steps for running the Angular Project
 
 ## Development server
 
